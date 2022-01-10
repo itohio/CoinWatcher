@@ -48,9 +48,6 @@ func (a *App) makeMenu() *fyne.Container {
 			a.showSettings()
 		}),
 		widget.NewToolbarSeparator(),
-		widget.NewToolbarAction(theme.ViewRefreshIcon(), func() {
-			a.updateQuotes()
-		}),
 	)
 
 	a.currencyWidget = widget.NewSelect([]string{}, func(s string) {

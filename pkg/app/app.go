@@ -12,6 +12,7 @@ import (
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/data/binding"
+	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"github.com/itohio/CoinWatcher/pkg/crypto"
 	"github.com/itohio/CoinWatcher/pkg/logger"
@@ -68,7 +69,18 @@ func New(name string) *App {
 	ret.pbWidget.TextFormatter = func() string {
 		return fmt.Sprint("ETA ", ((ret.interval-time.Since(ret.lastUpdated))/time.Minute)*time.Minute)
 	}
-	w.SetContent(container.NewBorder(menu, ret.pbWidget, nil, nil, list))
+	btnUpdate := widget.NewButtonWithIcon("", theme.ViewRefreshIcon(), func() {
+		ret.updateQuotes()
+	})
+
+	w.SetContent(
+		container.NewBorder(
+			menu,
+			container.NewBorder(nil, nil, nil, btnUpdate, ret.pbWidget),
+			nil, nil,
+			list,
+		),
+	)
 
 	return ret
 }
