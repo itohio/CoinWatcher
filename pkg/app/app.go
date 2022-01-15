@@ -26,7 +26,7 @@ type App struct {
 	currency    string
 	interval    time.Duration
 	lastUpdated time.Time
-	feed        *crypto.Crypto
+	feed        crypto.Crypto
 	apiKey      string
 
 	coinData       []interface{}

@@ -21,7 +21,7 @@ type Settings struct {
 func (a *App) defaultSettings() {
 	logger.Log.Info().Msg("Loading default settings")
 	a.apiKey = os.Getenv("COINWATCHER_KEY")
-	a.feed = crypto.New(a.apiKey, a)
+	a.feed = crypto.NewCMC(a.apiKey, a)
 	a.currency = a.feed.GetCurrencies()[0]
 	a.interval = time.Hour * 3
 
@@ -50,7 +50,7 @@ func (a *App) loadSettings() {
 		settings.APIKey = os.Getenv("COINWATCHER_KEY")
 	}
 
-	a.feed = crypto.New(settings.APIKey, a)
+	a.feed = crypto.NewCMC(settings.APIKey, a)
 	a.currency = settings.Currency
 	a.apiKey = settings.APIKey
 	a.interval = settings.Interval

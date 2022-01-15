@@ -2,6 +2,7 @@ package app
 
 import (
 	"fmt"
+	"strings"
 	"time"
 
 	"fyne.io/fyne/v2"
@@ -76,8 +77,7 @@ func (a *App) addNewSymbol() {
 	}
 
 	symbolSelect := widget.NewSelectEntry(options)
-
-	dialog.ShowForm(
+	f := dialog.NewForm(
 		"Add a coin",
 		"OK",
 		"Cancel",
@@ -96,6 +96,8 @@ func (a *App) addNewSymbol() {
 		},
 		a.window,
 	)
+
+	f.Show()
 }
 
 func (a *App) showSettings() {
@@ -212,6 +214,10 @@ func (a *App) delSymbol(symbol string) {
 func (a *App) lookupSymbol(symbol string) (crypto.Symbol, bool) {
 	if a.feed == nil {
 		return crypto.Symbol{}, false
+	}
+	parts := strings.Split(symbol, " ")
+	if len(parts) > 1 {
+		symbol = parts[0]
 	}
 
 	for _, s := range a.feed.GetSymbols() {
