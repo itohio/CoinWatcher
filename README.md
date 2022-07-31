@@ -36,3 +36,8 @@ to configure the api key using settings button.
 - [ ] Setup actions for when a price reaches certain threshold
 -    [ ] pluggable pattern matchers
 -    [ ] pluggable actions
+
+
+# Acknowledgement
+
+App Icon by [Icons8](https://icons8.com/icon/111404/increase)

@@ -43,7 +43,7 @@ type App struct {
 var _ crypto.Cache = &App{}
 
 func New(name string) *App {
-	a := app.NewWithID("CoinWatcher")
+	a := app.NewWithID("itohio.coin.watcher")
 	w := a.NewWindow(name)
 	w.Resize(fyne.NewSize(350, 600))
 
